@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kundan Kumar Bright</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: deep indigo hero band with a colour stripe, sticky pill nav, then colour-coded sections.
+   Colour carries meaning: each employer has one colour, shared by its timeline bar and project card. */
+:root {
+  color-scheme: light;
+  --bg: #f6f4ff;
+  --surface: #ffffff;
+  --ink: #17123d;
+  --muted: #554f85;
+  --line: #dcd7f3;
+  --on-c: #ffffff;
+  --violet: #6d28d9;
+  --pink: #be185d;
+  --orange: #c2410c;
+  --teal: #0f766e;
+  --blue: #1d4ed8;
+  --green: #15803d;
+  --amber: #b45309;
+  --rose: #be123c;
+  --cyan: #0e7490;
+  --yellow: #ffd23f;
+  --hero: #1b1464;
+  --h1: #ffd23f; --h2: #ff7ac6; --h3: #ff9f5a; --h4: #35e0c8; --h5: #7db4ff;
+  --h6: #b69cff; --h7: #7be07b; --h8: #ff7a8c; --h9: #5ee7f5;
+  --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0d0926;
+    --surface: #171040;
+    --ink: #f1eeff;
+    --muted: #a9a3d6;
+    --line: #2d2564;
+    --on-c: #130d33;
+    --violet: #a78bfa;
+    --pink: #f472b6;
+    --orange: #fb923c;
+    --teal: #2dd4bf;
+    --blue: #60a5fa;
+    --green: #4ade80;
+    --amber: #fbbf24;
+    --rose: #fb7185;
+    --cyan: #22d3ee;
+    --hero: #241a70;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0d0926;
+  --surface: #171040;
+  --ink: #f1eeff;
+  --muted: #a9a3d6;
+  --line: #2d2564;
+  --on-c: #130d33;
+  --violet: #a78bfa;
+  --pink: #f472b6;
+  --orange: #fb923c;
+  --teal: #2dd4bf;
+  --blue: #60a5fa;
+  --green: #4ade80;
+  --amber: #fbbf24;
+  --rose: #fb7185;
+  --cyan: #22d3ee;
+  --hero: #241a70;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1rem/1.6 var(--f-body);
+  -webkit-text-size-adjust: 100%;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  background: var(--bg);
+  z-index: 10;
+}
+a { color: var(--blue); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+.wrap {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Hero */
+.hero { background: var(--hero); color: #fff; }
+.hero .wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: end;
+  padding-block: clamp(36px, 6vw, 72px) clamp(32px, 5vw, 56px);
+}
+.eyebrow {
+  display: inline-block;
+  margin: 0;
+  background: var(--yellow);
+  color: #17123d;
+  font: 500 0.75rem/1.4 var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+h1 {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(3.2rem, 10vw, 6.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  margin: 18px 0 0;
+  text-wrap: balance;
+}
+h1 .y { color: var(--yellow); }
+.tagline { margin: 18px 0 22px; max-width: 40ch; font-size: 1.1rem; color: rgba(255, 255, 255, 0.84); text-wrap: pretty; }
+.hero-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.hero-chips li {
+  background: var(--hc);
+  color: #130d33;
+  font: 500 0.85rem/1.3 var(--f-body);
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+.contact {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 12px;
+  padding: 4px 18px;
+  min-width: 0;
+}
+.c-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; min-width: 0; }
+.c-row + .c-row { border-top: 1px solid rgba(255, 255, 255, 0.16); }
+.c-row .k {
+  flex: none;
+  width: 66px;
+  font: 500 0.72rem/1.4 var(--f-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+.c-row .v { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: 0.92rem; color: #fff; }
+.c-row a.v { color: var(--yellow); }
+.copy {
+  flex: none;
+  font: 500 0.72rem/1 var(--f-mono);
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: transparent;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.copy:hover { background: var(--yellow); border-color: var(--yellow); color: #17123d; }
+.stripe { display: flex; height: 12px; }
+.stripe i { flex: 1; }
+.stripe i:nth-child(1) { background: var(--h1); }
+.stripe i:nth-child(2) { background: var(--h2); }
+.stripe i:nth-child(3) { background: var(--h3); }
+.stripe i:nth-child(4) { background: var(--h4); }
+.stripe i:nth-child(5) { background: var(--h5); }
+.stripe i:nth-child(6) { background: var(--h6); }
+.stripe i:nth-child(7) { background: var(--h7); }
+.stripe i:nth-child(8) { background: var(--h8); }
+.stripe i:nth-child(9) { background: var(--h9); }
+
+/* Sticky nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav ul { list-style: none; margin: 0; padding-block: 10px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.nav ul::-webkit-scrollbar { display: none; }
+.nav li { flex: none; }
+.nav a {
+  display: block;
+  padding: 7px 16px;
+  border: 1.5px solid var(--c);
+  border-radius: 999px;
+  color: var(--c);
+  font: 500 0.82rem/1.3 var(--f-mono);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+.nav a:hover { background: var(--c); color: var(--on-c); }
+
+/* Sections */
+main { padding-block: clamp(36px, 6vw, 64px) 24px; display: flex; flex-direction: column; gap: clamp(52px, 8vw, 84px); }
+section { scroll-margin-top: 80px; min-width: 0; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 26px; }
+h2 {
+  position: relative;
+  margin: 0;
+  padding-bottom: 14px;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 64px; height: 6px; border-radius: 3px; background: var(--c); }
+.sec-note { font: 400 0.75rem/1.4 var(--f-mono); color: var(--muted); }
+
+.lead { font-size: clamp(1.15rem, 2.4vw, 1.5rem); line-height: 1.5; margin: 0 0 28px; max-width: 58ch; text-wrap: pretty; }
+mark { color: inherit; background: linear-gradient(transparent 58%, color-mix(in srgb, var(--yellow) 85%, transparent) 58%); padding: 0 2px; }
+.focus { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+.focus li {
+  background: var(--surface);
+  background: color-mix(in srgb, var(--c) 12%, var(--surface));
+  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--c) 38%, var(--surface));
+  border-radius: 12px;
+  padding: 16px 18px 18px;
+}
+.focus li::before { content: ""; display: block; width: 14px; height: 14px; border-radius: 50%; background: var(--c); margin-bottom: 10px; }
+
+/* Tags */
+.tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.tags li {
+  font: 500 0.82rem/1.3 var(--f-body);
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: var(--surface);
+  background: color-mix(in srgb, var(--c) 14%, var(--surface));
+  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--c) 40%, var(--surface));
+}
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+.skill { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; min-width: 0; }
+.skill h3 {
+  display: inline-block;
+  margin: 0 0 12px;
+  background: var(--c);
+  color: var(--on-c);
+  font: 500 0.72rem/1.4 var(--f-mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: 999px;
+}
+
+/* Career chart */
+.chart { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px 14px; }
+.plot { position: relative; }
+.axis { position: relative; height: 20px; margin-bottom: 6px; }
+.tick { position: absolute; top: 0; transform: translateX(-50%); font: 400 0.7rem/20px var(--f-mono); color: var(--muted); }
+.gridline { position: absolute; top: 26px; bottom: 0; width: 1px; background: var(--line); }
+.lanes { list-style: none; margin: 0; padding: 0; position: relative; }
+.lane { padding: 8px 0 10px; }
+.lane-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 6px;
+  width: fit-content;
+  max-width: 100%;
+  padding-right: 6px;
+  background: var(--surface);
+  font-size: 0.9rem;
+}
+.lane-label b { font-weight: 600; }
+.lane-label b::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: var(--c); margin-right: 8px; }
+.lane-label span { font: 400 0.75rem/1.5 var(--f-mono); color: var(--muted); }
+.track { position: relative; height: 12px; }
+.bar { position: absolute; top: 0; height: 100%; min-width: 4px; background: var(--c); border-radius: 6px; }
+.chart-note { font: 400 0.75rem/1.5 var(--f-mono); color: var(--muted); margin: 12px 0 0; }
+
+/* Projects */
+.projects { display: flex; flex-direction: column; gap: 20px; }
+.project { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.p-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 16px;
+  background: var(--c);
+  color: var(--on-c);
+  padding: 14px 24px;
+}
+h3.p-title { margin: 0; font-family: var(--f-display); font-weight: 700; font-size: 1.4rem; line-height: 1.2; letter-spacing: -0.01em; text-wrap: balance; }
+.when { font: 500 0.78rem/1.5 var(--f-mono); }
+.p-body { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 16px 28px; padding: 20px 24px 22px; }
+.p-body > div { min-width: 0; }
+.p-body p { margin: 0 0 10px; text-wrap: pretty; }
+.meta { font-size: 0.88rem; color: var(--muted); }
+details { margin-top: 14px; }
+summary { cursor: pointer; font: 500 0.78rem/1.6 var(--f-mono); letter-spacing: 0.04em; color: var(--c); }
+details ul, .common ul { margin: 10px 0 0; padding-left: 1.2em; }
+details li, .common li { margin-bottom: 4px; }
+.common { margin-top: 4px; padding: 20px 24px; border-radius: 12px; background: var(--surface); background: color-mix(in srgb, var(--blue) 10%, var(--surface)); border: 1px solid color-mix(in srgb, var(--blue) 35%, var(--surface)); }
+.common h4 { margin: 0; font: 500 0.75rem/1.5 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+/* Education */
+.edus { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+.edu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--surface);
+  background: color-mix(in srgb, var(--c) 12%, var(--surface));
+  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--c) 38%, var(--surface));
+}
+.edu .deg { font: 500 0.75rem/1.5 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.edu .pct { font-family: var(--f-display); font-weight: 800; font-size: 3.2rem; line-height: 1; color: var(--c); }
+
+footer { margin-top: clamp(36px, 6vw, 64px); }
+footer p { margin: 0; padding-block: 18px 36px; font: 400 0.75rem/1.5 var(--f-mono); color: var(--muted); }
+
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .p-body { grid-template-columns: minmax(0, 1fr); padding: 18px 18px 20px; }
+  .p-head { padding: 12px 18px; }
+  .chart { padding: 14px 14px 10px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Senior Software Developer, Java</p>
+      <h1>Kundan <span class="y">Kumar</span></h1>
+      <p class="tagline">Java back ends and Angular front ends for banking, lending, insurance, logistics and EV charging products.</p>
+      <ul class="hero-chips">
+        <li style="--hc:var(--h1)">7 years</li>
+        <li style="--hc:var(--h2)">Noida, India</li>
+        <li style="--hc:var(--h3)">Java 8</li>
+        <li style="--hc:var(--h4)">Spring Boot</li>
+        <li style="--hc:var(--h5)">Microservices</li>
+        <li style="--hc:var(--h6)">Angular 17</li>
+      </ul>
+    </div>
+
+    <div class="contact">
+      <div class="c-row">
+        <span class="k">Email</span>
+        <a class="v" id="v-email" href="mailto:kunk8667@gmail.com">kunk8667@gmail.com</a>
+        <button class="copy" type="button" data-copy="kunk8667@gmail.com" data-target="v-email">Copy</button>
+      </div>
+      <div class="c-row">
+        <span class="k">Phone</span>
+        <span class="v" id="v-phone">+91-8802292341</span>
+        <button class="copy" type="button" data-copy="+91-8802292341" data-target="v-phone">Copy</button>
+      </div>
+      <div class="c-row">
+        <span class="k">LinkedIn</span>
+        <a class="v" href="https://www.linkedin.com/in/kundan-kumar-690240120/" target="_blank" rel="noopener">kundan-kumar-690240120</a>
+      </div>
+    </div>
+  </div>
+  <div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</header>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <ul>
+      <li style="--c:var(--violet)"><a href="#about">About</a></li>
+      <li style="--c:var(--pink)"><a href="#skills">Skills</a></li>
+      <li style="--c:var(--orange)"><a href="#experience">Experience</a></li>
+      <li style="--c:var(--teal)"><a href="#projects">Projects</a></li>
+      <li style="--c:var(--blue)"><a href="#education">Education</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="about" style="--c:var(--violet)">
+    <div class="sec-head"><h2>About</h2></div>
+    <p class="lead">Seven years of designing, building, testing and supporting distributed enterprise applications in Java 8 and JEE, working in Agile teams. Most of that time has gone into <mark>Spring Boot microservices and REST APIs</mark>.</p>
+    <ul class="focus">
+      <li style="--c:var(--violet)">REST APIs and microservices with Spring Boot, Spring MVC and Spring Security</li>
+      <li style="--c:var(--pink)">Persistence with Hibernate and JPA on Oracle, MySQL and PostgreSQL</li>
+      <li style="--c:var(--orange)">Angular 17 user interfaces on top of those APIs</li>
+      <li style="--c:var(--teal)">Docker, Kafka, Jenkins and AWS (EC2, S3, Lambda) for build and delivery</li>
+      <li style="--c:var(--blue)">Production support, UAT and SIT bug fixing, and patch releases</li>
+      <li style="--c:var(--green)">Products in banking, lending, insurance, healthcare, logistics and EV charging</li>
+    </ul>
+  </section>
+
+  <section id="skills" style="--c:var(--pink)">
+    <div class="sec-head"><h2>Skills</h2></div>
+    <div class="skills">
+      <div class="skill" style="--c:var(--violet)"><h3>Core</h3><ul class="tags"><li>Core Java</li><li>Java EE</li><li>Java 8</li><li>OOP</li><li>Collections and Map</li><li>Lambda and Streams</li><li>Multithreading</li></ul></div>
+      <div class="skill" style="--c:var(--pink)"><h3>Frameworks</h3><ul class="tags"><li>Spring Core</li><li>Spring Boot</li><li>Spring MVC</li><li>Spring Security</li><li>Spring Data JPA</li><li>Microservices</li><li>Hibernate</li><li>JPA</li></ul></div>
+      <div class="skill" style="--c:var(--orange)"><h3>Web</h3><ul class="tags"><li>Angular 17</li><li>TypeScript</li><li>Servlet</li><li>REST web services</li><li>Thymeleaf</li><li>HTML</li><li>JavaScript</li><li>jQuery</li><li>Ajax</li><li>JSON</li></ul></div>
+      <div class="skill" style="--c:var(--teal)"><h3>Databases</h3><ul class="tags"><li>Oracle</li><li>MySQL</li><li>PostgreSQL</li><li>SQL scripting</li></ul></div>
+      <div class="skill" style="--c:var(--blue)"><h3>Cloud and messaging</h3><ul class="tags"><li>AWS (EC2, S3, Lambda)</li><li>Docker</li><li>Kafka</li><li>Jenkins</li></ul></div>
+      <div class="skill" style="--c:var(--green)"><h3>Tools</h3><ul class="tags"><li>Maven</li><li>Git</li><li>GitHub</li><li>Bitbucket</li><li>SVN</li><li>JIRA</li><li>JUnit 5</li><li>SonarLint</li><li>IntelliJ IDEA</li><li>Eclipse</li><li>Spring Tool Suite</li><li>MySQL Workbench</li><li>Apache Tomcat 8</li></ul></div>
+      <div class="skill" style="--c:var(--amber)"><h3>Design patterns</h3><ul class="tags"><li>Factory</li><li>Singleton</li><li>MVC</li><li>DAO</li></ul></div>
+      <div class="skill" style="--c:var(--rose)"><h3>Platforms</h3><ul class="tags"><li>Linux</li><li>Ubuntu</li><li>Windows</li></ul></div>
+      <div class="skill" style="--c:var(--cyan)"><h3>Ways of working</h3><ul class="tags"><li>Agile</li><li>Sprint planning</li><li>Work assignment</li><li>Progress tracking</li><li>Delivery</li></ul></div>
+    </div>
+  </section>
+
+  <section id="experience" style="--c:var(--orange)">
+    <div class="sec-head"><h2>Experience</h2><span class="sec-note">Aug 2019 to Oct 2026</span></div>
+    <div class="chart">
+      <div class="plot">
+        <div class="axis" aria-hidden="true">
+          <span class="tick" style="left:5.747%">2020</span>
+          <span class="tick" style="left:19.54%">2021</span>
+          <span class="tick" style="left:33.333%">2022</span>
+          <span class="tick" style="left:47.126%">2023</span>
+          <span class="tick" style="left:60.92%">2024</span>
+          <span class="tick" style="left:74.713%">2025</span>
+          <span class="tick" style="left:88.506%">2026</span>
+        </div>
+        <div aria-hidden="true">
+          <i class="gridline" style="left:5.747%"></i>
+          <i class="gridline" style="left:19.54%"></i>
+          <i class="gridline" style="left:33.333%"></i>
+          <i class="gridline" style="left:47.126%"></i>
+          <i class="gridline" style="left:60.92%"></i>
+          <i class="gridline" style="left:74.713%"></i>
+          <i class="gridline" style="left:88.506%"></i>
+        </div>
+        <ol class="lanes">
+          <li class="lane" style="--c:var(--orange)">
+            <div class="lane-label"><b>EsoftLab Solutions</b><span>Sr. Software Developer · Oct 2025 – now · client Accenture, Noida</span></div>
+            <div class="track"><i class="bar" style="left:85.057%;width:14.943%"></i></div>
+          </li>
+          <li class="lane" style="--c:var(--blue)">
+            <div class="lane-label"><b>Aurionpro Solutions</b><span>Sr. Software Developer · Feb 2024 – Jun 2025 · Noida</span></div>
+            <div class="track"><i class="bar" style="left:62.069%;width:19.54%"></i></div>
+          </li>
+          <li class="lane" style="--c:var(--teal)">
+            <div class="lane-label"><b>Iboss Tech Solutions</b><span>Software Developer · Mar 2023 – Jan 2024 · Noida</span></div>
+            <div class="track"><i class="bar" style="left:49.425%;width:12.069%"></i></div>
+          </li>
+          <li class="lane" style="--c:var(--pink)">
+            <div class="lane-label"><b>Samin TekMindz</b><span>Software Developer · Jun 2021 – Mar 2023 · Noida</span></div>
+            <div class="track"><i class="bar" style="left:25.287%;width:24.138%"></i></div>
+          </li>
+          <li class="lane" style="--c:var(--green)">
+            <div class="lane-label"><b>PwC</b><span>Software Developer · Feb 2021 – Jun 2021 · Kolkata, third-party payroll</span></div>
+            <div class="track"><i class="bar" style="left:20.69%;width:5.747%"></i></div>
+          </li>
+          <li class="lane" style="--c:var(--violet)">
+            <div class="lane-label"><b>Nucleus Software</b><span>Software Developer · Aug 2019 – Jun 2021 · Noida</span></div>
+            <div class="track"><i class="bar" style="left:0%;width:26.437%"></i></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <p class="chart-note">Bars are drawn to scale, month by month. Colours match the project cards below.</p>
+  </section>
+
+  <section id="projects" style="--c:var(--teal)">
+    <div class="sec-head"><h2>Projects</h2><span class="sec-note">5 products, newest first</span></div>
+    <div class="projects">
+
+      <article class="project" style="--c:var(--orange)">
+        <div class="p-head"><h3 class="p-title">FedEx Freight Currency</h3><span class="when">Current · Oct 2025 – now</span></div>
+        <div class="p-body">
+          <div>
+            <p class="meta">Sr. Software Engineer · EsoftLab Solutions for Accenture</p>
+            <p>Freight currency is the currency in which FedEx shipping and freight charges are calculated and billed. The work covers development, enhancement and production support for the services behind it.</p>
+          </div>
+          <div>
+            <ul class="tags"><li>Core Java</li><li>Java 8</li><li>Spring Boot</li><li>Spring MVC</li><li>Spring Data JPA</li><li>Microservices</li><li>Angular 17</li><li>Oracle</li><li>Jenkins</li></ul>
+            <details>
+              <summary>What the role involves</summary>
+              <ul>
+                <li>Daily Scrum updates on development, support, blockers and progress.</li>
+                <li>Development and application support tasks using Java, Spring Boot, Spring MVC, microservices and RESTful APIs.</li>
+                <li>Deploying changes to the target environment and running sanity tests after deployment.</li>
+                <li>Validating each task before delivery, then updating and closing SCTASK or MyNav tickets.</li>
+                <li>Monitoring application dashboards and logs, investigating production issues and resolving defects with the team.</li>
+                <li>Build, deployment and CI/CD work with Jenkins.</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" style="--c:var(--blue)">
+        <div class="p-head"><h3 class="p-title">SBI (YONO)</h3><span class="when">Feb 2024 – Jun 2025</span></div>
+        <div class="p-body">
+          <div>
+            <p class="meta">Sr. Software Engineer · Aurionpro Solutions</p>
+            <p>YONO brings multiple banking services into one mobile app and web portal. The aim is a single customer experience that supports financial inclusion and digital adoption.</p>
+          </div>
+          <div>
+            <ul class="tags"><li>Core Java</li><li>Java 8</li><li>Spring Boot</li><li>Spring MVC</li><li>Spring Data JPA</li><li>Microservices</li><li>Angular 17</li><li>Oracle</li><li>SVN</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" style="--c:var(--teal)">
+        <div class="p-head"><h3 class="p-title">Safe Guard (Cancellation)</h3><span class="when">Mar 2023 – Jan 2024</span></div>
+        <div class="p-body">
+          <div>
+            <p class="meta">Sr. Software Engineer · Iboss Tech Solutions</p>
+            <p>A vehicle protection product line: tire and wheel, dent, windshield, key and theft protection, GAP, service contracts, roadside assistance and prepaid maintenance, across automotive, RV, marine and powersports.</p>
+          </div>
+          <div>
+            <ul class="tags"><li>Core Java</li><li>Java 8</li><li>Spring Boot</li><li>Spring MVC</li><li>Spring Data JPA</li><li>Microservices</li><li>MySQL</li><li>SonarLint</li><li>GitHub</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" style="--c:var(--pink)">
+        <div class="p-head"><h3 class="p-title">Greenlots (Electrify America)</h3><span class="when">Jun 2021 – Mar 2023</span></div>
+        <div class="p-body">
+          <div>
+            <p class="meta">Sr. Software Engineer · Samin TekMindz</p>
+            <p>EV charging network software that lets utilities, cities, workplaces, apartment owners, businesses and automakers deploy and run their own networks of smart charging stations at scale, for slow, medium and fast charging.</p>
+          </div>
+          <div>
+            <ul class="tags"><li>Core Java</li><li>Java 8</li><li>Spring Boot</li><li>Spring MVC</li><li>Spring Data JPA</li><li>Microservices</li><li>Oracle</li><li>Bitbucket</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" style="--c:var(--violet)">
+        <div class="p-head"><h3 class="p-title">FinnOne CAS and FinnOne Master</h3><span class="when">Aug 2019 – Feb 2021</span></div>
+        <div class="p-body">
+          <div>
+            <p class="meta">Software Engineer · Nucleus Software</p>
+            <p>A lending product used by banks. As part of the team I analysed problems, proposed solutions and built the logic for loan applications, taking small modules from requirement gathering through to unit testing. The loan application module follows a customer from the first details a bank employee enters, through each stage, until the loan is disbursed to the Loan Management System.</p>
+          </div>
+          <div>
+            <ul class="tags"><li>Core Java</li><li>Java 8</li><li>Spring Boot</li><li>Spring MVC</li><li>Spring Data JPA</li><li>Microservices</li><li>Oracle</li><li>SonarLint</li><li>Bitbucket</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <div class="common">
+        <h4>Across SBI, Greenlots, Safe Guard and FinnOne</h4>
+        <ul>
+          <li>Set up the project and database in a local environment.</li>
+          <li>Developed modules to client requirements, writing clean, scalable code to specification.</li>
+          <li>Wrote and ran unit tests and debugged to protect quality and performance.</li>
+          <li>Supported deployments to production and monitored performance and errors.</li>
+          <li>Fixed production, UAT and SIT bugs and shipped patch releases.</li>
+          <li>Joined status and bug discussions with the team.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" style="--c:var(--blue)">
+    <div class="sec-head"><h2>Education</h2></div>
+    <div class="edus">
+      <div class="edu" style="--c:var(--blue)"><span class="deg">B.Tech · Computer Science</span><strong class="pct">66%</strong><span>Maharishi Dayanand University, Rohtak</span></div>
+      <div class="edu" style="--c:var(--violet)"><span class="deg">Class XII</span><strong class="pct">57%</strong><span>Bihar Intermediate Education Council, Patna</span></div>
+      <div class="edu" style="--c:var(--teal)"><span class="deg">Class X</span><strong class="pct">63%</strong><span>Bihar Intermediate Education Council, Patna</span></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="wrap"><p>Kundan Kumar · Noida · Updated October 2026</p></div>
+</footer>
+
+<script>
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var label = btn.textContent;
+    function flash(text) {
+      btn.textContent = text;
+      setTimeout(function () { btn.textContent = label; }, 1600);
+    }
+    function selectText() {
+      var el = document.getElementById(btn.dataset.target);
+      if (!el) return;
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      flash('Selected');
+    }
+    try {
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () { flash('Copied'); }, selectText);
+    } catch (e) {
+      selectText();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
